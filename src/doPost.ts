@@ -7,7 +7,7 @@ function doPost(event: GoogleAppsScript.Events.DoPost) {
   ) {
     return;
   }
-  const { type = '', text = '', link = '' } = JSON.parse(
+  const { type = '', text = '', link = '', score, priority } = JSON.parse(
     event.postData.contents,
   );
 
@@ -15,7 +15,7 @@ function doPost(event: GoogleAppsScript.Events.DoPost) {
   const sheet = ss.getActiveSheet();
 
   const date = new Date();
-  const row = [date, type, text, link];
+  const row = [date, type, text, link, score, priority];
 
   sheet.appendRow(row);
 }
